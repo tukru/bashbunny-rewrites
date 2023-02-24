@@ -1,7 +1,6 @@
 System Override Payload
 
 The System Override payload is designed to extract encrypted system information from the target machine using sophisticated AI algorithms. This payload uses a custom-designed logo to blend in with legitimate processes, evading detection from even the most advanced security systems.
-Usage
 
 This payload can be used on Windows and Linux operating systems and can be executed in either HID or Storage attack modes. Once executed, the payload will perform the following actions:
 
