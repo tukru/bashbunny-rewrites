@@ -1,0 +1,47 @@
+# Clear the loot folder
+LED B
+ATTACKMODE HID STORAGE
+Q DELAY 200
+Q GUI r
+Q DELAY 200
+Q STRING cmd /c "del /q /s /f %loot%"
+Q ENTER
+Q DELAY 500
+
+# Upgrade Hak5 libraries
+LED Y
+Q STRING cd %loot%
+Q ENTER
+Q DELAY 500
+Q STRING git fetch origin
+Q ENTER
+Q DELAY 500
+Q STRING git status
+Q ENTER
+Q DELAY 500
+Q STRING git pull
+Q ENTER
+Q DELAY 500
+
+# Clean up temporary files
+LED G
+Q STRING cd %userprofile%
+Q ENTER
+Q DELAY 500
+Q STRING rmdir /s /q .git
+Q ENTER
+Q DELAY 500
+
+# Sync and eject the Bash Bunny
+LED R
+Q STRING sync
+Q ENTER
+Q DELAY 2000
+Q GUI r
+Q DELAY 200
+Q STRING cmd /c "echo 'Eject your Bash Bunny'"
+Q ENTER
+Q DELAY 500
+Q STRING rundll32.exe shell32.dll,Control_RunDLL hotplug.dll
+Q ENTER
+Q DELAY 500
